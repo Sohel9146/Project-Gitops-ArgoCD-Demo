@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gitops-html
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/Sohel9146/Project-Gitops-ArgoCD-Demo.git'
+    targetRevision: main
+    path: manifests/overlays/dev
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: gitops-html
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

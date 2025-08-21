@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gitops-html
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gitops-html
+  template:
+    metadata:
+      labels:
+        app: gitops-html
+    spec:
+      containers:
+      - name: gitops-html
+        image: sohel7866/gitops-html:v1.0.0
+        ports:
+        - containerPort: 80

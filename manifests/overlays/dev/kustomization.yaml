@@ -1,0 +1,6 @@
+bases:
+  - ../../base
+
+images:
+  - name: sohel7866/gitops-html
+    newTag: v1.0.0
