@@ -1,15 +1,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hello GitOps v2</title>
+    <title>Hello GitOps v3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 60px;
+            background-color: #f4f6f8;
+        }
+        h1 {
+            color: #2c3e50;
+        }
+        h2 {
+            color: #2980b9;
+        }
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 6px;
+            background-color: #27ae60;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #219150;
+        }
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
-    <h1 style="color: #2c3e50;">🚀 Welcome to GitOps with ArgoCD</h1>
-    <h2 style="color: #16a085;">Now running Version 2.0.0 🎉</h2>
-    <p style="font-size: 18px; color: #555;">
-        This is the upgraded release of our GitOps HTML app.<br>
-        Deployed seamlessly using <strong>ArgoCD Auto-Sync</strong>.
-    </p>
+<body>
+    <h1>🌟 Welcome to GitOps with ArgoCD</h1>
+    <h2>Now running Version 3.0.0 🚀</h2>
+    <p>This version introduces a simple interactive feature.</p>
+    
+    <button onclick="showMessage()">Click Me!</button>
+    
+    <p id="message" style="margin-top:20px; font-weight: bold; color:#e74c3c;"></p>
+
+    <script>
+        function showMessage() {
+            document.getElementById("message").innerText = "🎉 GitOps deployment successful via ArgoCD v3!";
+        }
+    </script>
 </body>
 </html>
 
