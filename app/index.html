@@ -1,53 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Hello GitOps v3</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 60px;
-            background-color: #f4f6f8;
-        }
-        h1 {
-            color: #2c3e50;
-        }
-        h2 {
-            color: #2980b9;
-        }
-        p {
-            font-size: 18px;
-            color: #555;
-        }
-        button {
-            padding: 12px 20px;
-            font-size: 16px;
-            margin-top: 20px;
-            border: none;
-            border-radius: 6px;
-            background-color: #27ae60;
-            color: white;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #219150;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hello GitOps v4</title>
+  <style>
+    :root{
+      --bg:#f6f7fb; --fg:#1f2937; --muted:#6b7280; --brand:#2563eb; --card:#ffffff; --ok:#16a34a; --warn:#ea580c;
+    }
+    .dark{
+      --bg:#0b1020; --fg:#e5e7eb; --muted:#9ca3af; --brand:#60a5fa; --card:#111827; --ok:#22c55e; --warn:#f59e0b;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+      background:var(--bg); color:var(--fg); display:flex; min-height:100vh; align-items:center; justify-content:center;
+    }
+    .wrap{width:clamp(320px, 90vw, 820px); padding:28px}
+    .card{
+      background:var(--card); border-radius:20px; padding:28px;
+      box-shadow:0 10px 30px rgba(0,0,0,.08), inset 0 0 0 1px rgba(0,0,0,.04);
+    }
+    .head{display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+    .title{display:flex; gap:14px; align-items:center}
+    .logo{width:40px; height:40px; border-radius:10px; display:grid; place-items:center; background:rgba(37,99,235,.1)}
+    .logo svg{width:24px; height:24px; fill:var(--brand)}
+    .badge{background:rgba(37,99,235,.12); color:var(--brand); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:600}
+    .muted{color:var(--muted)}
+    .actions{display:flex; gap:10px; align-items:center}
+    button{
+      padding:10px 14px; border:0; border-radius:10px; cursor:pointer; font-weight:600;
+      background:var(--brand); color:white; transition:transform .05s ease, opacity .2s ease;
+    }
+    button.secondary{background:transparent; color:var(--fg); border:1px solid rgba(0,0,0,.1)}
+    button:active{transform:scale(.98)}
+    .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:22px}
+    .panel{
+      background:rgba(0,0,0,.03); border-radius:14px; padding:16px; min-height:110px;
+      border:1px solid rgba(0,0,0,.05);
+    }
+    .dark .panel{background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.06)}
+    .panel h3{margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted)}
+    .ok{color:var(--ok); font-weight:700}
+    .warn{color:var(--warn); font-weight:700}
+    .footer{margin-top:18px; font-size:13px}
+    .link{color:var(--brand); text-decoration:none}
+    @media (max-width:720px){ .grid{grid-template-columns:1fr} }
+  </style>
 </head>
 <body>
-    <h1>🌟 Welcome to GitOps with ArgoCD</h1>
-    <h2>Now running Version 3.0.0 🚀</h2>
-    <p>This version introduces a simple interactive feature.</p>
-    
-    <button onclick="showMessage()">Click Me!</button>
-    
-    <p id="message" style="margin-top:20px; font-weight: bold; color:#e74c3c;"></p>
+  <div class="wrap">
+    <div class="card">
+      <div class="head">
+        <div class="title">
+          <div class="logo" aria-hidden="true">
+            <!-- simple rocket icon -->
+            <svg viewBox="0 0 24 24"><path d="M14 3l7 7-4 1-4 4-1 4-7-7 4-1 4-4 1-4zm-2.5 5.5L9 11l-2 .5 3.5 3.5.5-2 2.5-2.5-1.5-1.5zM5 19h4l-2 2H5v-2z"/></svg>
+          </div>
+          <div>
+            <h1 style="margin:0">Hello GitOps with ArgoCD</h1>
+            <div class="muted">Seamless deployments via GitOps</div>
+          </div>
+        </div>
+        <div class="actions">
+          <span class="badge">v4.0.0</span>
+          <button class="secondary" id="themeBtn" title="Toggle theme">🌓 Theme</button>
+        </div>
+      </div>
 
-    <script>
-        function showMessage() {
-            document.getElementById("message").innerText = "🎉 GitOps deployment successful via ArgoCD v3!";
-        }
-    </script>
+      <div class="grid">
+        <div class="panel">
+          <h3>Deployment Status</h3>
+          <div id="statusText">Awaiting health check…</div>
+          <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap">
+            <button id="checkBtn" title="Run a quick client-side check">Run Health Check</button>
+            <button class="secondary" id="timeBtn" title="Show current serverless time">Show Current Time</button>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Release Notes</h3>
+          <ul style="margin:0 0 6px 18px; padding:0; line-height:1.5">
+            <li>🌓 Dark-mode toggle</li>
+            <li>✅ Client-side health check button</li>
+            <li>🎯 Clean UI + responsive layout</li>
+            <li>🔄 Perfect for ArgoCD auto-sync tests</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer muted">
+        Tip: Commit this file as <code>app/index.html</code>, build/push your image as <code>v4.0.0</code>, update your overlay tag, and watch ArgoCD sync.
+        <br/>Need help? See <span class="link">README</span>.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Theme toggle (persists across reloads)
+    const root = document.documentElement;
+    const themeBtn = document.getElementById('themeBtn');
+    const saved = localStorage.getItem('theme') || 'light';
+    if(saved === 'dark'){ root.classList.add('dark'); }
+    themeBtn.addEventListener('click', () => {
+      root.classList.toggle('dark');
+      localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+    });
+
+    // Health check (simple interactive proof of v4)
+    const statusEl = document.getElementById('statusText');
+    const checkBtn = document.getElementById('checkBtn');
+    checkBtn.addEventListener('click', () => {
+      statusEl.textContent = 'Checking…';
+      // Simulate a quick check
+      setTimeout(() => {
+        const ok = true; // static app, but enough to prove UI is updated
+        statusEl.innerHTML = ok
+          ? '✅ <span class="ok">Deployment healthy</span> — served by NGINX.'
+          : '⚠️ <span class="warn">Check failed</span> — try again.';
+      }, 450);
+    });
+
+    // Show current time (another visible change)
+    document.getElementById('timeBtn').addEventListener('click', () => {
+      const now = new Date();
+      statusEl.innerHTML = '🕒 Current time: <strong>' + now.toLocaleString() + '</strong>';
+    });
+  </script>
 </body>
 </html>
 
