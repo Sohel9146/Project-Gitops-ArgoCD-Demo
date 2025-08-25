@@ -3,48 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hello GitOps v4</title>
+  <title>Hello GitOps v5</title>
   <style>
-    :root{
-      --bg:#f6f7fb; --fg:#1f2937; --muted:#6b7280; --brand:#2563eb; --card:#ffffff; --ok:#16a34a; --warn:#ea580c;
+    :root {
+      --bg: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+      --fg: #1f2937;
+      --muted: #6b7280;
+      --brand: #3b82f6;
+      --card: rgba(255,255,255,0.85);
+      --ok: #16a34a;
+      --warn: #ea580c;
+      --shadow: rgba(0,0,0,.1);
     }
-    .dark{
-      --bg:#0b1020; --fg:#e5e7eb; --muted:#9ca3af; --brand:#60a5fa; --card:#111827; --ok:#22c55e; --warn:#f59e0b;
+    .dark {
+      --bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      --fg: #f3f4f6;
+      --muted: #9ca3af;
+      --brand: #60a5fa;
+      --card: rgba(17,24,39,0.85);
+      --ok: #22c55e;
+      --warn: #f59e0b;
+      --shadow: rgba(0,0,0,.6);
     }
-    *{box-sizing:border-box}
-    body{
-      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
-      background:var(--bg); color:var(--fg); display:flex; min-height:100vh; align-items:center; justify-content:center;
+    * { box-sizing: border-box; }
+    body {
+      margin:0;
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
-    .wrap{width:clamp(320px, 90vw, 820px); padding:28px}
-    .card{
-      background:var(--card); border-radius:20px; padding:28px;
-      box-shadow:0 10px 30px rgba(0,0,0,.08), inset 0 0 0 1px rgba(0,0,0,.04);
+    .wrap { width: clamp(340px, 92vw, 880px); }
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 32px;
+      box-shadow: 0 10px 40px var(--shadow), inset 0 0 0 1px rgba(255,255,255,.08);
+      animation: fadeIn 0.7s ease;
     }
-    .head{display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap}
-    .title{display:flex; gap:14px; align-items:center}
-    .logo{width:40px; height:40px; border-radius:10px; display:grid; place-items:center; background:rgba(37,99,235,.1)}
-    .logo svg{width:24px; height:24px; fill:var(--brand)}
-    .badge{background:rgba(37,99,235,.12); color:var(--brand); padding:6px 10px; border-radius:999px; font-size:12px; font-weight:600}
-    .muted{color:var(--muted)}
-    .actions{display:flex; gap:10px; align-items:center}
-    button{
-      padding:10px 14px; border:0; border-radius:10px; cursor:pointer; font-weight:600;
-      background:var(--brand); color:white; transition:transform .05s ease, opacity .2s ease;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    button.secondary{background:transparent; color:var(--fg); border:1px solid rgba(0,0,0,.1)}
-    button:active{transform:scale(.98)}
-    .grid{display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:22px}
-    .panel{
-      background:rgba(0,0,0,.03); border-radius:14px; padding:16px; min-height:110px;
+    .head { display:flex; gap:18px; align-items:center; justify-content:space-between; flex-wrap:wrap }
+    .title { display:flex; gap:16px; align-items:center }
+    .logo {
+      width:48px; height:48px; border-radius:14px;
+      display:grid; place-items:center;
+      background: rgba(59,130,246,.15);
+      box-shadow: inset 0 0 6px rgba(59,130,246,.25);
+    }
+    .logo svg { width:28px; height:28px; fill:var(--brand) }
+    .badge {
+      background: var(--brand);
+      color:white;
+      padding:6px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:600;
+      box-shadow:0 2px 6px rgba(0,0,0,.15);
+    }
+    .actions { display:flex; gap:12px; align-items:center }
+    button {
+      padding:10px 16px;
+      border:0;
+      border-radius:12px;
+      cursor:pointer;
+      font-weight:600;
+      background:var(--brand);
+      color:white;
+      transition: all .25s ease;
+      box-shadow:0 3px 10px rgba(59,130,246,.35);
+    }
+    button:hover { transform: translateY(-2px); opacity:.95 }
+    button.secondary {
+      background: transparent;
+      color: var(--fg);
+      border:1px solid rgba(0,0,0,.1);
+      box-shadow:none;
+    }
+    .grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:26px }
+    .panel {
+      background: rgba(255,255,255,.15);
+      border-radius:18px;
+      padding:20px;
+      min-height:120px;
       border:1px solid rgba(0,0,0,.05);
+      transition: transform .2s ease;
     }
-    .dark .panel{background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.06)}
-    .panel h3{margin:0 0 8px; font-size:14px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted)}
-    .ok{color:var(--ok); font-weight:700}
-    .warn{color:var(--warn); font-weight:700}
-    .footer{margin-top:18px; font-size:13px}
-    .link{color:var(--brand); text-decoration:none}
+    .dark .panel { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.1) }
+    .panel:hover { transform: scale(1.02); }
+    .panel h3 {
+      margin:0 0 10px;
+      font-size:15px;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      color:var(--muted);
+    }
+    .ok { color: var(--ok); font-weight:700 }
+    .warn { color: var(--warn); font-weight:700 }
+    .footer { margin-top:22px; font-size:14px; text-align:center }
+    .link { color:var(--brand); text-decoration:none; font-weight:600 }
     @media (max-width:720px){ .grid{grid-template-columns:1fr} }
   </style>
 </head>
@@ -54,16 +118,15 @@
       <div class="head">
         <div class="title">
           <div class="logo" aria-hidden="true">
-            <!-- simple rocket icon -->
             <svg viewBox="0 0 24 24"><path d="M14 3l7 7-4 1-4 4-1 4-7-7 4-1 4-4 1-4zm-2.5 5.5L9 11l-2 .5 3.5 3.5.5-2 2.5-2.5-1.5-1.5zM5 19h4l-2 2H5v-2z"/></svg>
           </div>
           <div>
-            <h1 style="margin:0">Hello GitOps with ArgoCD</h1>
-            <div class="muted">Seamless deployments via GitOps</div>
+            <h1 style="margin:0; font-size:1.6em;">Hello GitOps Premium</h1>
+            <div class="muted">Automated deployments with elegance ✨</div>
           </div>
         </div>
         <div class="actions">
-          <span class="badge">v4.0.0</span>
+          <span class="badge">v5.0.0</span>
           <button class="secondary" id="themeBtn" title="Toggle theme">🌓 Theme</button>
         </div>
       </div>
@@ -71,32 +134,32 @@
       <div class="grid">
         <div class="panel">
           <h3>Deployment Status</h3>
-          <div id="statusText">Awaiting health check…</div>
-          <div style="margin-top:10px; display:flex; gap:8px; flex-wrap:wrap">
-            <button id="checkBtn" title="Run a quick client-side check">Run Health Check</button>
-            <button class="secondary" id="timeBtn" title="Show current serverless time">Show Current Time</button>
+          <div id="statusText">Awaiting check…</div>
+          <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+            <button id="checkBtn">Run Health Check</button>
+            <button class="secondary" id="timeBtn">Show Time</button>
           </div>
         </div>
         <div class="panel">
           <h3>Release Notes</h3>
-          <ul style="margin:0 0 6px 18px; padding:0; line-height:1.5">
-            <li>🌓 Dark-mode toggle</li>
-            <li>✅ Client-side health check button</li>
-            <li>🎯 Clean UI + responsive layout</li>
-            <li>🔄 Perfect for ArgoCD auto-sync tests</li>
+          <ul style="margin:0 0 6px 18px; padding:0; line-height:1.6">
+            <li>🌈 Glassmorphism design</li>
+            <li>✨ Animated fade-in panels</li>
+            <li>🌓 Smart theme toggle</li>
+            <li>✅ Enhanced health checks</li>
           </ul>
         </div>
       </div>
 
       <div class="footer muted">
-        Tip: Commit this file as <code>app/index.html</code>, build/push your image as <code>v4.0.0</code>, update your overlay tag, and watch ArgoCD sync.
-        <br/>Need help? See <span class="link">README</span>.
+        Tip: Commit as <code>app/index.html</code>, build/push your image as <code>v5.0.0</code>, update overlay, and let ArgoCD do the magic 🚀
+        <br/>See docs in <span class="link">README</span>.
       </div>
     </div>
   </div>
 
   <script>
-    // Theme toggle (persists across reloads)
+    // Theme toggle
     const root = document.documentElement;
     const themeBtn = document.getElementById('themeBtn');
     const saved = localStorage.getItem('theme') || 'light';
@@ -106,21 +169,19 @@
       localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
     });
 
-    // Health check (simple interactive proof of v4)
+    // Health check
     const statusEl = document.getElementById('statusText');
-    const checkBtn = document.getElementById('checkBtn');
-    checkBtn.addEventListener('click', () => {
-      statusEl.textContent = 'Checking…';
-      // Simulate a quick check
+    document.getElementById('checkBtn').addEventListener('click', () => {
+      statusEl.textContent = '🔍 Checking…';
       setTimeout(() => {
-        const ok = true; // static app, but enough to prove UI is updated
+        const ok = Math.random() > 0.2; // 80% chance OK
         statusEl.innerHTML = ok
           ? '✅ <span class="ok">Deployment healthy</span> — served by NGINX.'
-          : '⚠️ <span class="warn">Check failed</span> — try again.';
-      }, 450);
+          : '⚠️ <span class="warn">Check failed</span> — please retry.';
+      }, 500);
     });
 
-    // Show current time (another visible change)
+    // Show time
     document.getElementById('timeBtn').addEventListener('click', () => {
       const now = new Date();
       statusEl.innerHTML = '🕒 Current time: <strong>' + now.toLocaleString() + '</strong>';
