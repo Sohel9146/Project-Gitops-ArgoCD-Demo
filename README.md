@@ -14,10 +14,10 @@ This project demonstrates **continuous delivery using Git as the single source o
 
 ## 📋 Table of Contents
 - [Features](#-Features)
-- [Tech Stack](#-tech-stack)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
+- [Tech Stack](#-Tech-Stack)
+- [Prerequisites](#-Prerequisites)
+- [Installation](#-Installation & Deployment)
+- [Usage](#-Usage)
 - [Architecture](#-architecture)
 - [GitOps Version Updates](#-gitops-in-action--version-updates)
 - [Project Structure](#project-structure)
