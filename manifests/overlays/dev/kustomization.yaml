@@ -3,4 +3,4 @@ bases:
 
 images:
   - name: sohel7866/gitops-html
-    newTag: v4.0.0
+    newTag: v5.0.0
