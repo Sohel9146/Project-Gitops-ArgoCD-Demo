@@ -13,7 +13,7 @@ This project demonstrates **continuous delivery using Git as the single source o
 ---
 
 ## 📋 Table of Contents
-- [Features](#features)
+- [Features](#-Features)
 - [Tech Stack](#-tech-stack)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
